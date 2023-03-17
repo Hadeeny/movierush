@@ -36,7 +36,7 @@ const MovieDetail = () => {
           />
         </div>
         <p>{Description}</p>
-          <a href={DownloadLink} target="_blank" className="bg-green-400 px-4 py-1 text-sm rounded-md inline-block">
+          <a href={DownloadLink} target='_blank' className="bg-green-400 px-4 py-1 text-sm rounded-md inline-block">
             Download
           </a>
         

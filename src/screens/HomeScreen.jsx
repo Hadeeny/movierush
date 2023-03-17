@@ -21,11 +21,12 @@ const HomeScreen = () => {
     fetchMovies()
     }, [page])
 
+
     const nextPage = ()=>{
         setPage(page=>page+1)
     }
   return (
-    <main id='top'>
+    <main className='mt-[6rem]' id='top'>
       
       <div className='grid gap-16 grid-cols-fluid'>
       {movies.map((movie, index)=>(
