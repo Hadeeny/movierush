@@ -6,20 +6,20 @@ import {useDispatch, useSelector} from 'react-redux'
 import SkeletonLoader from '../components/SkeletonLoader';
 import Movie from '../components/Movie'
 
-const MovieDetail = () => {
+const ResultScreen = () => {
 
   const dispatch = useDispatch()
   const {pathname} = useLocation()
   let { title, pageNum } = useParams();
 
   const movies = useSelector((state) => state.allMovie);
-  const {movie, loading} = movies
+  const {result, loading} = movies
   useEffect(() => {
     window.scrollTo(0, 0);
     // fetchMovies()
   }, [pathname]);
   
-  const { Title, Year, Size, Category, CoverPhotoLink, Description, DownloadLink} = movie
+  const { Title, Year, Size, Category, CoverPhotoLink, Description, DownloadLink} = result
   return (
     <div className='flex flex-col mt-[7rem] justify-center items-center'>
       {loading? (<SkeletonLoader/>): (
@@ -30,11 +30,10 @@ const MovieDetail = () => {
         CoverPhotoLink={CoverPhotoLink}
         Description={Description}
         DownloadLink={DownloadLink}
-        Size={Size}
         />
       )}
     </div>
   )
 }
 
-export default MovieDetail
+export default ResultScreen
