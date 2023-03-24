@@ -13,6 +13,7 @@ const Header = () => {
   const showSearch = ()=>{
     dispatch(searchMovie(query))
     setShowMenu(false)
+    setQuery('')
   }
   return (
     <div className='fixed w-full bg-black/60 backdrop-blur-sm border-y-[1px] border-gray-500 inset-x-0 top-0 py-6 '>
@@ -41,8 +42,8 @@ const Header = () => {
         </div>
 
       </div>
-      <div className={`w-11/12 ${!showMenu && 'hidden'} mt-4 mx-auto`}>
-      <div className='space-x-4 flex items-center'>
+      <div className={`w-11/12  ${!showMenu && 'hidden'} mt-4 mx-auto`}>
+      <div className={`space-x-4 flex items-center`}>
           {/* <img onClick={sendQuery} className='w-[2rem] cursor-pointer' src={search} alt='search' /> */}
           <Link to={`/search/${query}`} className='w-[4rem] flex justify-center items-center bg-blue-400 rounded h-[2rem] text-gray-100'>
             <div onClick={showSearch}>

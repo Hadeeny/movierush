@@ -9,8 +9,7 @@ const AllMovies = ({title, link, poster_path, loading}) => {
   let { pageNum } = useParams(); 
     return (
         <>
-          {loading? (<SkeletonLoader/>): (
-            <div>
+          <div>
             <h1>{title}</h1>
             <Link to={link}>
             <div onClick={()=>{dispatch(getTitle(title))
@@ -19,7 +18,6 @@ const AllMovies = ({title, link, poster_path, loading}) => {
             </div>
             </Link>
         </div>
-          )}
         </>
     )
 }
