@@ -13,19 +13,22 @@ const ResultScreen = () => {
   let { title, pageNum } = useParams();
 
   const movies = useSelector((state) => state.allMovie);
-  const {result, loading} = movies
+  const {results} = movies
   useEffect(() => {
     window.scrollTo(0, 0);
     // fetchMovies()
-  }, [pathname]);
-  
+  }, [pathname]); 
+
+  const result = results.find(movie => movie.Title === title)
+
   const { Title, Year, Size, Category, CoverPhotoLink, Description, DownloadLink} = result
   return (
     <div className='flex flex-col mt-[7rem] justify-center items-center'>
-      {loading? (<SkeletonLoader/>): (
+      {false? (<SkeletonLoader/>): (
         <Movie 
         Title={Title}
         Year={Year}
+        Size={Size}
         Category={Category}
         CoverPhotoLink={CoverPhotoLink}
         Description={Description}

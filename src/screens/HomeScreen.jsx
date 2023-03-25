@@ -1,55 +1,40 @@
-import {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
 import AllMovies from '../components/AllMovies'
-import {getAllMovies, clearResults}from '../features/movieSlice'
-
-import { useNavigate, useParams } from "react-router-dom";
+import useSWR from "swr";
+import {useDispatch} from 'react-redux'
 import SkeletonLoader from '../components/SkeletonLoader';
-const HomeScreen = () => {
-    const navigate = useNavigate()
-    const [page, setPage] = useState(1)
-    
-    let { pageNum } = useParams();
-    const movies = useSelector((state) => state.allMovie);
-    const {allMovies, loading} = movies
-    const dispatch = useDispatch()
-    useEffect(() => {
-    dispatch(getAllMovies())
-    dispatch(clearResults())
-  }, [])
+import {populateMovies} from '../features/movieSlice'
 
-    const nextPage = ()=>{
-        setPage(page=>page+1)
-    }
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+const HomeScreen = () => {
+  const dispatch = useDispatch()
+  const { data, error, isLoading } = useSWR(
+    "https://tfvids-node.onrender.com/getData/?page=1&engine=nkiri,fzmovies",
+    fetcher
+  );
+
+  if (error) return "An error has occurred.";
+  if (isLoading) return (<SkeletonLoader/>);
+  if(data){
+    dispatch(populateMovies(data))
+  }
   return (
     <main className='mt-[7rem]' id='top'>
-      
-      {loading ? (<div>
-        <h3 className='text-lg font-bold py-6'>Loading latest movies..</h3>
-        <div className='grid gap-16 grid-cols-fluid'>
-        <SkeletonLoader/>
-        <SkeletonLoader/>
-        <SkeletonLoader/>
-        </div>
-      </div>): (
-        <div>
           <h3 className='text-lg font-bold py-6'>Latest movies (Trending)</h3>
           <div className='grid gap-16 grid-cols-fluid'>
-        {allMovies.map((movie, index)=>(
-          <AllMovies  
-          title={movie.Title}
-          key={index}
-          id={index} 
-          poster_path={movie.CoverPhotoLink}
-          release_date = {movie.UploadDate}
-          loading={loading}
-          link = {`/${movie.Title}`}
-          />
-        ))} 
+            {data.map((movie, index)=>(
+              <AllMovies  
+              title={movie.Title}
+              key={index}
+              id={index} 
+              poster_path={movie.CoverPhotoLink}
+              release_date = {movie.UploadDate}
+              loading={isLoading}
+              link = {`/${movie.Title}`}
+              />
+            ))} 
         </div>
-        </div>
-      )}
-      <a href='#top' onClick={nextPage}>Next page</a>
+      {/* <a href='#top' onClick={nextPage}>Next page</a> */}
     </main>
   )
 }

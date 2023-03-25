@@ -8,21 +8,22 @@ import Movie from '../components/Movie'
 
 const MovieDetail = () => {
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const {pathname} = useLocation()
-  let { title, pageNum } = useParams();
+  // let { title, pageNum } = useParams();
 
   const movies = useSelector((state) => state.allMovie);
-  const {movie, loading} = movies
+  const {allMovies, title} = movies
+
   useEffect(() => {
     window.scrollTo(0, 0);
     // fetchMovies()
   }, [pathname]);
-  
+  const movie = allMovies.find(movie => movie.Title === title)
   const { Title, Year, Size, Category, CoverPhotoLink, Description, DownloadLink} = movie
   return (
     <div className='flex flex-col mt-[7rem] justify-center items-center'>
-      {loading? (<SkeletonLoader/>): (
+      {false? (<SkeletonLoader/>): (
         <Movie 
         Title={Title}
         Year={Year}

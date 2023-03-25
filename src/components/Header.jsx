@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import search from '../assets/search.svg'
 import movie from '../assets/movie.svg'
-import {searchMovie} from '../features/movieSlice'
+import {searchMovie, getQuery} from '../features/movieSlice'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -14,6 +14,7 @@ const Header = () => {
     dispatch(searchMovie(query))
     setShowMenu(false)
     setQuery('')
+    dispatch(getQuery(query))
   }
   return (
     <div className='fixed w-full bg-black/60 backdrop-blur-sm border-y-[1px] border-gray-500 inset-x-0 top-0 py-6 '>
