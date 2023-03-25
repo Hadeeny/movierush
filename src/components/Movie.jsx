@@ -7,7 +7,6 @@ const Movie = ({Title, Year, Category, Size, CoverPhotoLink, Description, Downlo
     split.pop()
     const formatedTitle = split.join('.')
     const downloadLink = `https://dw05.downloadwella.com/d/qmwqoq3dbwatc4c5elyrqw77srd2inpzna4q4zysrccatibmxuqnjfsxnfopwqzhexxdrbpx/${formatedTitle}.(NKIRI.COM).${Year}.Downloaded.from.NKIRI.COM.mkv`
-  // const downloadLink = `https://dw11.downloadwella.com/d/riwqaq3dbwatc4c5elyqcwphyrn36j7ol5tsypfixe5hsqhrlb6tg7upghqtmpghot5qwmiu/${formatedTitle}.(NKIRI.COM).${Year}.WEBRip.DOWNLOADED.FROM.NKIRI.COM.mkv`
     return (
     <div>
         <h1 className="text-2xl">{Title}</h1>

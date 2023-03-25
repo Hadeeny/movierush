@@ -17,12 +17,12 @@ const Header = () => {
     dispatch(getQuery(query))
   }
   return (
-    <div className='fixed w-full bg-black/60 backdrop-blur-sm border-y-[1px] border-gray-500 inset-x-0 top-0 py-6 '>
+    <div className='fixed w-full bg-black/60 backdrop-blur-sm border-y-[1px] border-gray-500 inset-x-0 top-0 py-3 '>
       <div className='flex w-11/12 mx-auto justify-between'>
       
         <Link className='flex items-center' to={'/'}>
           <span className='text-gray-100 font-bold md:text-3xl text-xl '>MovieRush</span>
-          <span className='ml-4'>
+          <span className='ml-2'>
             <img className='w-[2.8rem]' src={movie} alt='movie'/>
           </span>
         </Link>

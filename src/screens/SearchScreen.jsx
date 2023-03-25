@@ -19,14 +19,18 @@ const SearchScreen = () => {
   ); 
 
   if (error) return "An error has occurred.";
-  if (isLoading) return (<SkeletonLoader/>);
+  if (isLoading) return (<div className='mt-[7rem] grid gap-16 grid-cols-fluid'>
+    <SkeletonLoader/>
+    <SkeletonLoader/>
+    <SkeletonLoader/>
+  </div>);
   if(data){
     dispatch(populateResults(data))
   }    
   return (
     <div className=''>
         {isLoading? (<SkeletonLoader/>): (
-          <div className='grid mt-[7rem] gap-16 grid-cols-fluid'>
+          <div className='grid gap-16 grid-cols-fluidMob sm:grid-cols-fluid'>
           {data.map((movie, index)=>(
             <AllMovies  
             title={movie.Title}

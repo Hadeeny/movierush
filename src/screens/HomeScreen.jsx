@@ -14,14 +14,18 @@ const HomeScreen = () => {
   );
 
   if (error) return "An error has occurred.";
-  if (isLoading) return (<SkeletonLoader/>);
+  if (isLoading) return (<div className='mt-[7rem] grid gap-16 grid-cols-fluid'>
+    <SkeletonLoader/>
+    <SkeletonLoader/>
+    <SkeletonLoader/>
+  </div>);
   if(data){
     dispatch(populateMovies(data))
   }
   return (
     <main className='mt-[7rem]' id='top'>
           <h3 className='text-lg font-bold py-6'>Latest movies (Trending)</h3>
-          <div className='grid gap-16 grid-cols-fluid'>
+          <div className='grid gap-16 grid-cols-fluidMob sm:grid-cols-fluid'>
             {data.map((movie, index)=>(
               <AllMovies  
               title={movie.Title}
