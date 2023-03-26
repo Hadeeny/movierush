@@ -25,7 +25,7 @@ const Movie = ({
       <p className="max-w-md mx-auto text-center">{Description}</p>
       <div className="flex justify-center my-6">
         <a
-          href={downloadLink}
+          href={DownloadLink}
           target="_blank"
           className="bg-green-400 text-center px-6 py-2 text-sm rounded-md"
         >
